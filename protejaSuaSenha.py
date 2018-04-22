@@ -40,6 +40,25 @@ def calcularDigito(digito):
             listaNumeros.append(E[(i * 2):(i * 2 + 1)])
 
 
+def descobreNumero(listaLetra, pos1, pos2):
+    for i in range(len(listaLetra)):
+        if lista[pos1] == listaLetra[i]:
+            if i % 2 == 0:
+                if lista[i + 1] != lista[pos2]:
+                    mapaDigitoLetra['A'] = lista[0]
+            else:
+                if lista[i - 1] != lista[pos2]:
+                    mapaDigitoLetra['A'] = lista[0]
+
+        elif lista[pos2] == A[i]:
+            if i % 2 == 0:
+                if lista[i + 1] != lista[pos1]:
+                    mapaDigitoLetra['A'] = lista[1]
+            else:
+                if lista[i - 1] != lista[pos1]:
+                    mapaDigitoLetra['A'] = lista[1]
+
+
 lista = []
 senha = []
 mapaDigitoLetra = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0}
@@ -58,23 +77,3 @@ while nLinhas != 0:
         E.append(lista[8:10])
         senha.append(lista[10:16])
     nLinhas = int(input())
-
-'''
-    for i in range(len(A)):
-        if lista[0] == A[i]:
-            if i % 2 == 0:
-                if lista[i+1] != lista[1]:
-                    mapaDigitoLetra['A'] = lista[0]
-            else:
-                if lista[i-1] != lista[1]:
-                    mapaDigitoLetra['A'] = lista[0]
-        
-        elif lista[1] == A[i]:
-            if i % 2 == 0:
-                if lista[i+1] != lista[0]:
-                    mapaDigitoLetra['A'] = lista[1]
-            else:
-                if lista[i-1] != lista[0]:
-                    mapaDigitoLetra['A'] = lista[1]
-
-    '''
