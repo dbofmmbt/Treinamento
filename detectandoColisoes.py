@@ -33,22 +33,19 @@ y2[1] = max(ret2[1], ret2[3])
 for i in range(0,8,2):
 	if ret2[i] >= x1[0] and ret2[i] <= x1[1] and ret2[i+1] >= y1[0] and ret2[i+1] <= y1[1]:
 		resposta = 1
-
 # Para os casos em que há pontos de ret1 dentro de ret2:
 for i in range(0,8,2):
 	if ret1[i] >= x2[0] and ret1[i] <= x2[1] and ret1[i+1] >= y2[0] and ret1[i+1] <= y2[1]:
 		resposta = 1
-
 # Para os casos em que não há pontos dentro da intersecção:
-	if  ret1[0] >= x2[0] and ret1[0] <= x2[1]:
-		if ret1[1] <= y2[0] and ret1[3] >= y2[1]:
-			resposta = 1
-		elif ret1[1] >= y2[1] and ret1[3] <= y2[0]:
-			resposta = 1
-	elif ret1[1] >= y2[0] and ret1[1] <= y2[1]:
-		if ret1[0] <= x2[0] and ret1[2] >= x2[1]:
-			resposta = 1
-		elif ret1[0] >= x2[1] and ret1[2] <= x2[0]:
-			resposta = 1
-
+if  ret1[0] >= x2[0] and ret1[0] <= x2[1]:
+	if ret1[1] <= y2[0] and ret1[3] >= y2[1]:
+		resposta = 1
+	elif ret1[1] >= y2[1] and ret1[3] <= y2[0]:
+		resposta = 1
+elif ret1[1] >= y2[0] and ret1[1] <= y2[1]:
+	if ret1[0] <= x2[0] and ret1[2] >= x2[1]:
+		resposta = 1
+	elif ret1[0] >= x2[1] and ret1[2] <= x2[0]:
+		resposta = 1
 print(resposta)
