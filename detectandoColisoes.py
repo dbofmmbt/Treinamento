@@ -1,3 +1,4 @@
+#Resolução do problema "Detectando Colisões", do URI:
 ret1 = [0, 0, 0, 0, 0, 0, 0, 0]
 ret2 = [0, 0, 0, 0, 0, 0, 0, 0]
 x1 = [0, 0]
