@@ -1,4 +1,11 @@
 # Resolução do problema "Vivo ou Morto", proposto no URI:
+#
+#
+# OBS pro futuro: quando perceber que precisa
+# modelar melhor, modele melhor antes de codar.
+#
+#
+
 import pdb; pdb.set_trace()
 nTeste = 1
 qtdPessoas, qtdRodadas = map(int, input().split())
