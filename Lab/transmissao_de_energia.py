@@ -4,24 +4,14 @@ nTeste = 1
 
 while E != 0 and L != 0:
     estacao = ['branco'] * (E+1)
-    adj = []
-    for i in range(E+1):
-        adj.append([])
-    ligacoes = []
+    adj = [[] for i in range(E+1)]
     EstadoNormal = True
 
-    # Recebendo linhas de transmissão:
+    # Recebendo linhas de transmissão e Preenchendo adjacencias:
     for i in range(L):
         linha = list(map(int, input().split()))
-        ligacoes.append(linha)
-
-    # Preenchendo adjacencias:
-    for i in range(1, E+1):
-        for j in range(L):
-            if i == ligacoes[j][0]:
-                adj[i].append(ligacoes[j][1])
-            elif i == ligacoes[j][1]:
-                adj[i].append(ligacoes[j][0])
+        adj[linha[0]].append(linha[1])
+        adj[linha[1]].append(linha[0])
 
     # Verificar se, a partir de uma estação qualquer,
     #é possível alcançar as outras.
