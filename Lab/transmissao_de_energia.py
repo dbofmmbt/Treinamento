@@ -7,14 +7,14 @@ while E != 0 and L != 0:
     adj = [[] for i in range(E+1)]
     EstadoNormal = True
 
-    # Recebendo linhas de transmissão e Preenchendo adjacencias:
+    #   Recebendo linhas de transmissão e Preenchendo adjacencias:
     for i in range(L):
         linha = list(map(int, input().split()))
         adj[linha[0]].append(linha[1])
         adj[linha[1]].append(linha[0])
 
-    # Verificar se, a partir de uma estação qualquer,
-    #é possível alcançar as outras.
+    #   Verificar se, a partir de uma estação qualquer,
+    #   é possível alcançar as outras.
     fila = [1]
     estacao[1] = 'cinza'
     while fila != []:
@@ -22,17 +22,17 @@ while E != 0 and L != 0:
             if estacao[i] == 'branco':
                 estacao[i] = 'cinza'
                 fila.append(i)
+
         estacao[fila[0]] = 'preto'
         fila.pop(0)
 
-        # Se houver algum elemento diferente de preto, quer
-        # dizer que não foi possível alcançar aquele elemento.
-
+    #   Se houver algum elemento diferente de preto, quer
+    #   dizer que não foi possível alcançar aquele elemento.1
     for i in range(1, E+1):
         if estacao[i] != 'preto':
             EstadoNormal = False
 
-    # Impressão do Resultado:
+    #   Impressão do Resultado:
     print("Teste", nTeste)
     if EstadoNormal:
         print("normal\n")
