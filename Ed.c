@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 void adicionar();
-void menu_opcoes(void);
+void printar_lista(void);
+int menu_opcoes(void);
 
 //  Definição da lista:
 typedef struct node{
@@ -19,10 +20,10 @@ int main(void){
     //  Inicio, de fato, do programa:
     int escolha = 1; // Iniciado com valor arbitrário.
     while(escolha){
-        escolha  = menu_opcoes();
+        escolha = menu_opcoes();
         switch(escolha){
             case 1:
-                adicionar()
+                adicionar();
                 printf("Elemento adicionado.\n");
 
             case 3:
