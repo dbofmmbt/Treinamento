@@ -11,11 +11,14 @@ typedef struct node{
     struct node *next;
 } Node;
 
-//  Iniciando nó-cabeça:
-extern Node *raiz = malloc(sizeof(Node));
+//  declarando nó-cabeça:
+Node *raiz;
 int id_counter = 0;
 
 int main(void){
+
+    //  iniciando nó-cabeça:
+    raiz = malloc(sizeof(Node));
 
     //  Inicio, de fato, do programa:
     int escolha = 1; // Iniciado com valor arbitrário.
@@ -25,11 +28,19 @@ int main(void){
             case 1:
                 adicionar();
                 printf("Elemento adicionado.\n");
-
+                break;
             case 3:
+                printf("\n");
                 printf("Sequencia de elementos:\n");
                 printar_lista();
+                printf("\n");
+                break;
         }
+        printf("\n");   // Formatação Rudimentar nesse trecho!
+        int div = 0;
+        for(div=0; div<27; div++)
+            printf("-");
+        printf("\n\n");
     }
     return 0;
 }
@@ -57,9 +68,9 @@ int menu_opcoes(void){
 }
 
 void printar_lista(void){
-    Node *atual  = raiz;
+    Node *atual  = raiz->next;
     while(atual != NULL){
-        printf("%d", atual->id);
+        printf("%d ", atual->id);
         atual = atual->next;
     }
     return;
