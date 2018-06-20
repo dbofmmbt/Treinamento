@@ -1,15 +1,10 @@
 ''' Resolução do Problema 'Triângulo Interno', em preparação para a P2 de LAB:'''
-import math
-import random
 S, N, M = map(int, input().split())
-import pdb; pdb.set_trace()
 
-while (S and N and M != 0):
+while (S+N+M):
     c1, c2, c3 = map(int, input().split())
-    H = c1/N
-    B = math.fabs(c3-c2)/M
-    resposta = S * H * B
+    H = c1/(N+1)
+    B = abs(c3-c2)/(M+1)
+    resposta = int( (c1 * abs(c3-c2) * S)/( (N+1)*(M+1) ) )
     print(resposta)
     S, N, M = map(int, input().split())
-
-# TODO: A solução acima não funciona e não tenho mais ideias no momento.
