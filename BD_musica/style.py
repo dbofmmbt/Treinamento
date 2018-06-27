@@ -26,6 +26,16 @@ class Style(object):
     blink = "\033[5m"
     crossed = "\033[9m"
 
+    def negrito(self, texto):
+        print("{2}{0}{1} ".format(texto,\
+        estilo.normal, estilo.bold))
+
+    def sublinhado(self, texto):
+        """ Exibe o texto dado com formatação de titulo de opção. """
+        print("\n\t{2}{0}{1}\n"\
+        .format(texto, estilo.normal, estilo.underline))
+        return
+
     def __init__(self):
         pass
 
@@ -43,13 +53,19 @@ def divisoria(quantidade, formatacao = estilo.normal):
     print(estilo.normal)
     return
 
+def opcaoErrada():
+    """ Exibe texto para 'input' inválido. """
+    limparTela()
+    estilo.negrito("\n\tOpção Inválida!!!\n")
+    return
+
 def cabecalho():
     """ Imprime as Boas Vindas ao BD. """
     limparTela()
     divisoria(50, estilo.cyan)
-    print("{2}*{1}   Olá, bem vindo ao \
-Banco de Dados de Música!{0}{2}  *"\
-        .format(estilo.normal, estilo.bold, estilo.cyan))
+    print("{2}*{1}   Olá, bem-vindo ao {3}Banco de Dados de Música!{0}{2}  *"\
+        .format(estilo.normal, estilo.bold,\
+         estilo.cyan, estilo.underline))
     divisoria(50, estilo.cyan)
     print()
     return
@@ -73,17 +89,15 @@ def menu():
     # Para lidar com valores não numericos errados:
     try:
         resposta = int(input().strip())
+    except KeyboardInterrupt:
+        return 0
     except:
-        limparTela()
-        print("\n\t{1}Opção Inválida!!!{0}\n".format(estilo.normal,\
-        estilo.bold))
+        opcaoErrada()
         return menu()
 
     # Para lidar com valores numéricos errados:
     if not 0 <= resposta <= 9:
-        limparTela()
-        print("\n\t{1}Opção Inválida!!!{0}\n".format(estilo.normal,\
-        estilo.bold))
+        opcaoErrada()
         return menu()
 
     return resposta
