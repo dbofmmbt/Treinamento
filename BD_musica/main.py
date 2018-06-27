@@ -1,21 +1,35 @@
 """ Esse é o arquivo principal do trabalho de Banco de Dados
     em python, cujo tema escolhido foi 'Música'. """
-
+from time import sleep
 from style import *
 from data import *
 
 # Inicialização do programa:
 cabecalho()
 opcao_menu = menu()
+mapa_playlists = iniciarTabelas()
 
 # Loop Principal:
 while opcao_menu:  # Se == 0, programa se encerra.
     limparTela()
+    resultado_opcao = 0
     try:
         if opcao_menu == 1:  # Criar Playlist:
             estilo.sublinhado("Criando Playlist")
             estilo.negrito("Digite o nome da Playlist: ")
-            nome = input().strip()
+            nome = setaInput(str)
+
+            # Testando se já existe tal playlist:
+            while nome in mapa_playlists:
+                limparTela()
+                estilo.sublinhado("Criando Playlist")
+                estilo.negrito('Nome já utilizado! Digite outro: ')
+                nome = setaInput(str)
+
+            #adicionarTabela(mapa_playlists, nome)
+            resultado_opcao = "{1}1 - Playlist adicionada com Sucesso!{0}\n"\
+            .format(estilo.normal, estilo.green+estilo.bold)
+
         elif opcao_menu == 2:  # Salvar Playlist:
             print("\n\tOpção 2 escolhida!\n")
 
@@ -39,12 +53,21 @@ while opcao_menu:  # Se == 0, programa se encerra.
 
         elif opcao_menu == 9:  # Listar algumas Músicas:
             print("\n\tOpção 9 escolhida!\n")
+
     except KeyboardInterrupt:
         break  # Encerra o programa.
     limparTela()
     cabecalho()
+    if resultado_opcao:
+        print(resultado_opcao)
+        sleep(1.5)
     opcao_menu = menu()
 
 # Fim do programa:
+frase_final = "\n{1}Encerrando o programa... ;){0}"\
+.format(estilo.normal, estilo.bold+estilo.red)
 
-print("\n{1}Encerrando o programa...{0}".format(estilo.normal, estilo.bold+estilo.red))
+for letra in frase_final:
+    print(letra, flush=True, end='')
+    sleep(0.03)
+print()

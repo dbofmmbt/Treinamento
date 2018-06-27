@@ -59,6 +59,13 @@ def opcaoErrada():
     estilo.negrito("\n\tOpção Inválida!!!\n")
     return
 
+def setaInput(tipo):
+    """ Solicita ao usuário algum input, que é
+    convertido ao 'tipo' informado. """
+    print('\n{1}-> {0}'.format(estilo.normal, estilo.bold), end='')
+    valor = tipo(input().strip())
+    return valor
+
 def cabecalho():
     """ Imprime as Boas Vindas ao BD. """
     limparTela()
@@ -82,13 +89,12 @@ def menu():
     {1}7{0} - Inserir nova Música em uma {2}Playlist{0};\n\
     {1}8{0} - Apagar uma Música;\n\
     {1}9{0} - Listagem total ou filtrada;\n\
-    {1}0{0} - Sair do programa.\n\n\
-{1}{3}->{0} ".format(estilo.normal, estilo.bold,\
-    estilo.italic, estilo.blink), end='')
+    {1}0{0} - Sair do programa.\n".format\
+    (estilo.normal, estilo.bold, estilo.italic, estilo.blink), end='')
 
     # Para lidar com valores não numericos errados:
     try:
-        resposta = int(input().strip())
+        resposta = setaInput(int)
     except KeyboardInterrupt:
         return 0
     except:
