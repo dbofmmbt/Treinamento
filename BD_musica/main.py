@@ -9,6 +9,7 @@ from data import *
 cabecalho()
 opcao_menu = menu()
 mapa_arquivo = iniciarArquivos()
+mapa_playlist = iniciarTabelas(mapa_arquivo)
 
 # Loop Principal:
 while opcao_menu:  # Se == 0, programa se encerra.
@@ -27,9 +28,9 @@ while opcao_menu:  # Se == 0, programa se encerra.
                 estilo.negrito('Nome já utilizado! Digite outro: ')
                 nome = setaInput(str)
 
-            #adicionarTabela(mapa_arquivo, nome)
-            resultado_opcao = "{1}1 - Playlist adicionada com Sucesso!{0}\n"\
-            .format(estilo.normal, estilo.green+estilo.bold)
+            adicionarPlaylist(mapa_arquivo, mapa_playlist, nome)
+            resultado_opcao = estilo.bold+estilo.green\
+            +'1 - Playlist adicionada com Sucesso!\n'+estilo.normal
 
         elif opcao_menu == 2:  # Salvar Playlist:
             print("\n\tOpção 2 escolhida!\n")
@@ -47,7 +48,47 @@ while opcao_menu:  # Se == 0, programa se encerra.
             print("\n\tOpção 6 escolhida!\n")
 
         elif opcao_menu == 7:  # Inserir nova Música:
-            print("\n\tOpção 7 escolhida!\n")
+            estilo.sublinhado('Inserindo nova Música')
+            confirmado = False
+            while not confirmado:
+                musica = ['id', 'nome', 'banda,', 'album', 'genero']
+                # Recebendo Dados:
+                estilo.negrito('Digite o nome da Música:')
+                musica[1] = setaInput(str)
+                estilo.negrito('\nDigite a banda da Música:')
+                musica[2] = setaInput(str)
+                estilo.negrito('\nDigite o album da Música:')
+                musica[3] = setaInput(str)
+                estilo.negrito('\nDigite o gênero da Música:')
+                musica[4] = setaInput(str)
+
+                # Confirmação; Dados:
+                limparTela()
+                estilo.sublinhado('Inserindo nova Música')
+                estilo.negrito('\nConfirma os Dados?[S/N]:\n')
+                estilo.negrito('Nome: '+estilo.yellow+musica[1]+'\n')
+                estilo.negrito('Banda: '+estilo.yellow+musica[2]+'\n')
+                estilo.negrito('Album: '+estilo.yellow+musica[3]+'\n')
+                estilo.negrito('Genero: '+estilo.yellow+musica[4]+'\n')
+                resposta = setaInput(str)
+
+                # Confirmando a própria confirmação:
+                if resposta == 'S' or resposta == 's'\
+                or resposta == 'Y' or resposta == 'y' or resposta == '':
+                    confirmado = True
+                    limparTela()
+                elif resposta == 'N' or resposta == 'n':
+                    limparTela()
+                    estilo.sublinhado('Inserindo nova Música')
+                    print('\nPreencha novamente!\n')
+                else:
+                    limparTela()
+                    estilo.sublinhado('Inserindo nova Música')
+                    print('\nResposta Inválida, repita o processo!\n')
+
+            adicionarMusica(mapa_playlist, musica)
+            resultado_opcao = estilo.bold+estilo.green\
+            +'7 - Música Adicionada com Sucesso!\n'+estilo.normal
 
         elif opcao_menu == 8:  # Apagar uma Música:
             print("\n\tOpção 8 escolhida!\n")

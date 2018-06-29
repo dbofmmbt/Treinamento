@@ -32,9 +32,10 @@ class Style(object):
         estilo.normal, estilo.bold))
 
     def sublinhado(self, texto):
-        """ Exibe o texto dado com 'sublinhado'. """
+        """ Exibe o texto dado com 'sublinhado'. OBS: método usado
+        para formatação de subtítulos de 'tarefa atual'. """
         print("\n\t{2}{0}{1}\n"\
-        .format(texto, estilo.normal, estilo.underline))
+        .format(texto, estilo.normal, estilo.underline+estilo.blue))
         return
 
     def __init__(self):
