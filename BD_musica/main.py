@@ -1,5 +1,6 @@
 """ Esse é o arquivo principal do trabalho de Banco de Dados
     em python, cujo tema escolhido foi 'Música'. """
+
 from time import sleep
 from style import *
 from data import *
@@ -7,7 +8,7 @@ from data import *
 # Inicialização do programa:
 cabecalho()
 opcao_menu = menu()
-mapa_playlists = iniciarTabelas()
+mapa_arquivo = iniciarArquivos()
 
 # Loop Principal:
 while opcao_menu:  # Se == 0, programa se encerra.
@@ -20,13 +21,13 @@ while opcao_menu:  # Se == 0, programa se encerra.
             nome = setaInput(str)
 
             # Testando se já existe tal playlist:
-            while nome in mapa_playlists:
+            while nome in mapa_arquivo:
                 limparTela()
                 estilo.sublinhado("Criando Playlist")
                 estilo.negrito('Nome já utilizado! Digite outro: ')
                 nome = setaInput(str)
 
-            #adicionarTabela(mapa_playlists, nome)
+            #adicionarTabela(mapa_arquivo, nome)
             resultado_opcao = "{1}1 - Playlist adicionada com Sucesso!{0}\n"\
             .format(estilo.normal, estilo.green+estilo.bold)
 
@@ -58,7 +59,7 @@ while opcao_menu:  # Se == 0, programa se encerra.
         break  # Encerra o programa.
     limparTela()
     cabecalho()
-    if resultado_opcao:
+    if resultado_opcao:  # Se há algo != 0, imprima.
         print(resultado_opcao)
         sleep(1.5)
     opcao_menu = menu()

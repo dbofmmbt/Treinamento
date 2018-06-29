@@ -27,11 +27,12 @@ class Style(object):
     crossed = "\033[9m"
 
     def negrito(self, texto):
+        """ Exibe o texto dado com 'negrito'. """
         print("{2}{0}{1} ".format(texto,\
         estilo.normal, estilo.bold))
 
     def sublinhado(self, texto):
-        """ Exibe o texto dado com formatação de titulo de opção. """
+        """ Exibe o texto dado com 'sublinhado'. """
         print("\n\t{2}{0}{1}\n"\
         .format(texto, estilo.normal, estilo.underline))
         return
