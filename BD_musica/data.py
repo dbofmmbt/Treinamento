@@ -39,16 +39,53 @@ def adicionarPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
     mapa_tabela[nome_playlist] = []
     return
 
+def salvarPlaylist(mapa_arquivo, mapa_tabela, playlist):
+
+    arquivo = mapa_arquivo[playlist]
+    for registro in mapa_tabela[playlist]:
+        registro = '\t'.join(registro)
+        arquivo.write(registro+'\n')
+    return
+
 def adicionarMusica(mapa_tabela, musica, nome_playlist='All'):
     """ Escreve os Dados de uma lista 'Música' em uma Playlist do Mapa.
     padrão de 'Música': id, nome, banda, album, genero. """
     id = len(mapa_tabela['All'])
     musica[0] = str(id)
-    musica = '\t'.join(musica)
     if nome_playlist != 'All':
         mapa_tabela['All'].append(musica)
     mapa_tabela[nome_playlist].append(musica)
     return
+
+def consultarMusica(mapa_tabela, nome='', id=''):
+    """ Retorna uma lista em que '0' é a música e o restante são
+    as playlists que contêm tal música. Falso se não há música. """
+    try:
+        indice = -1
+        i = 0
+        if nome:
+            while(indice == -1):
+                if nome in mapa_tabela['All'][i]:
+                    indice = i
+                else:
+                    i += 1
+        else:
+            while(not indice):
+                if id in mapa_tabela['All'][i]:
+                    indice = i
+                else:
+                    i += 1
+
+        musica = [] # '0' é a música, resto é playlist.
+        musica.append(mapa_tabela['All'][indice])
+
+        for playlist in mapa_tabela:
+            if indice in playlist:
+                musica.append(playlist)
+    except:
+        return False
+    return musica
+
 
 def excluirPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
     """ Remove o arquivo e a tabela de uma Playlist. """
@@ -56,13 +93,10 @@ def excluirPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
     mapa_tabela.pop(nome_playlist)
     return
 
-def obterMusica(mapa_tabela, numero_musica):
-    pass
-
-
 def salvarTabelas(mapa_tabela, mapa_arquivo):
     """ Registra os dados do Mapa nos arquivos respectivos. """
     pass
+
 # Código de teste:
 mapa = iniciarArquivos()
 print(mapa)

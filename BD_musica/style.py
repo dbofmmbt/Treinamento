@@ -65,7 +65,10 @@ def setaInput(tipo):
     """ Solicita ao usuário algum input, que é
     convertido ao 'tipo' informado. """
     print('\n{1}-> {0}'.format(estilo.normal, estilo.bold), end='')
-    valor = tipo(input().strip())
+    try:
+        valor = tipo(input().strip())
+    except ValueError:
+        valor = -1
     return valor
 
 def cabecalho():
@@ -79,6 +82,22 @@ def cabecalho():
     print()
     return
 
+def exibirMusica(musica, id=False):
+    if id:
+        estilo.negrito('ID: '+estilo.yellow+musica[0]+'\n')
+    estilo.negrito('Nome: '+estilo.yellow+musica[1]+'\n')
+    estilo.negrito('Banda: '+estilo.yellow+musica[2]+'\n')
+    estilo.negrito('Album: '+estilo.yellow+musica[3]+'\n')
+    estilo.negrito('Genero: '+estilo.yellow+musica[4]+'\n')
+    return
+def listarElementos(lista):
+    """ Imprime os elementos de uma lista e retorna "len(lista)-1". """
+    numeracao = 0
+    for elemento in lista:
+        print('{2}{0}{3} - {1}\n'.format(numeracao,\
+        elemento, estilo.bold, estilo.normal))
+        numeracao += 1
+    return numeracao
 def menu():
     """ Imprime o Menu e retorna o valor escolhido. """
     print("{1}Por favor, escolha uma opção:{0}\n\n\

@@ -33,7 +33,27 @@ while opcao_menu:  # Se == 0, programa se encerra.
             +'1 - Playlist adicionada com Sucesso!\n'+estilo.normal
 
         elif opcao_menu == 2:  # Salvar Playlist:
-            print("\n\tOpção 2 escolhida!\n")
+            estilo.sublinhado('Salvando Playlist')
+            estilo.negrito('Escolha a Playlist a ser Salva:\n')
+
+            playlists = []
+            for chave in mapa_playlist:
+                playlists.append(chave)
+
+            numeracao = listarElementos(playlists)
+            numero_playlist = setaInput(int)
+            while not (0 <= numero_playlist < numeracao):
+                limparTela()
+                estilo.sublinhado('Salvando Playlist')
+                estilo.negrito('Escolha um Número Válido!\n')
+                listarElementos(playlists)
+                numero_playlist = setaInput(int)
+
+            nome_playlist = playlists[numero_playlist]
+            salvarPlaylist(mapa_arquivo, mapa_playlist, nome_playlist)
+            resultado_opcao = estilo.bold+estilo.green\
+            +'2 - Playlist Armazenada com Sucesso!\n'+estilo.normal
+
 
         elif opcao_menu == 3:  # Ler Playlist:
             print("\n\tOpção 3 escolhida!\n")
@@ -46,6 +66,23 @@ while opcao_menu:  # Se == 0, programa se encerra.
 
         elif opcao_menu == 6:  # Consultar Música:
             print("\n\tOpção 6 escolhida!\n")
+            estilo.sublinhado('Consultando Música:')
+            estilo.negrito('Digite o Nome ou o ID da Música Desejada:\n')
+            resposta = setaInput(str)
+            if resposta.isnumeric():
+                musica = consultarMusica(mapa_playlist, id=resposta)
+            else:
+                musica = consultarMusica(mapa_playlist, nome=resposta)
+            if musica:
+                estilo.negrito('Dados da Música solicitada:\n')
+                exibirMusica(musica[0], id=True)
+                estilo.negrito('Está Contida nas seguintes Playlists:\n')
+                for playlist in musica[1:]:
+                    print('\t'+playlist, end=';\n')
+            else:
+                resultado_opcao = 'A música identificada por \"'\
+                +estilo.bold+resposta+estilo.normal+\
+                '\" não foi encontrada!\n'
 
         elif opcao_menu == 7:  # Inserir nova Música:
             estilo.sublinhado('Inserindo nova Música')
@@ -66,10 +103,7 @@ while opcao_menu:  # Se == 0, programa se encerra.
                 limparTela()
                 estilo.sublinhado('Inserindo nova Música')
                 estilo.negrito('\nConfirma os Dados?[S/N]:\n')
-                estilo.negrito('Nome: '+estilo.yellow+musica[1]+'\n')
-                estilo.negrito('Banda: '+estilo.yellow+musica[2]+'\n')
-                estilo.negrito('Album: '+estilo.yellow+musica[3]+'\n')
-                estilo.negrito('Genero: '+estilo.yellow+musica[4]+'\n')
+                exibirMusica(musica, id=False)
                 resposta = setaInput(str)
 
                 # Confirmando a própria confirmação:
