@@ -135,10 +135,10 @@ while opcao_menu:  # Se == 0, programa se encerra.
                 print()
                 del i
                 estilo.negrito('Escolha uma Opção:\n')
-                print('N - Remove a Música da Playlist de número N;\n')
-                print('0 - Adiciona esta Música a alguma Playlist;\n')
-                print('-1 - Remove a Música do Banco de Dados.\n')
-                print('Qualquer valor não Númerico para voltar ao Menu.\n')
+                print('N - Remove a Música da Playlist de número N;')
+                print('0 - Adiciona esta Música a alguma Playlist;')
+                print('-1 - Remove a Música do Banco de Dados.')
+                print('Qualquer valor não Númerico para voltar ao Menu.')
                 opcao_escolhida = setaInput(str)
                 if opcao_escolhida.isnumeric() or opcao_escolhida=='-1':
                     opcao_escolhida = int(opcao_escolhida)
@@ -212,11 +212,31 @@ com Sucesso!\n'
         elif opcao_menu == 8:  # Listar algumas Músicas:
             estilo.sublinhado('Filtrando Músicas')
             estilo.negrito('Escolha uma Categoria:\n')
-            
             listarElementos(categorias_musica, numeracao=1)
             print()
             categoria_escolhida = setaInput(int)
-            #if categoria_escolhida == 1:
+            if categoria_escolhida == 1:  # Nome
+                continue
+            elif categoria_escolhida == 2:  # Banda
+                estilo.negrito('\nExibir Músicas de qual Banda?\n')
+                banda = setaInput(str)
+                lista_filtradas = filtrarMusicas(mapa_playlist, banda, 2)
+            elif categoria_escolhida == 3:  # Album
+                continue
+            elif categoria_escolhida == 4:  # Gênero
+                estilo.negrito('\nExibir Músicas de qual Gênero?\n')
+                genero = setaInput(str)
+                lista_filtradas = filtrarMusicas(mapa_playlist, genero, 4)
+            
+            limparTela()
+            estilo.sublinhado('Filtrando Músicas')
+            estilo.negrito('As Músicas Filtradas são:\n')
+            
+            for i in range(len(lista_filtradas)):
+                lista_filtradas[i] = '; '.join(lista_filtradas[i])
+            listarElementos(lista_filtradas, ordem=False)
+            estilo.negrito('Pressione Enter para Continuar:')
+            setaInput(str)
 
     except KeyboardInterrupt:
         break  # Encerra o programa.
@@ -225,7 +245,7 @@ com Sucesso!\n'
     if resultado_opcao:  # Se há algo != 0, imprima.
         resultado_opcao = logAtividade(resultado_opcao)  # Aplicando Style.
         print(resultado_opcao)
-        sleep(1.5)
+        sleep(1.2)
     opcao_menu = menu()
 
 # Fim do programa:

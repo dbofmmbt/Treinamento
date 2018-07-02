@@ -57,6 +57,13 @@ def adicionarPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
     mapa_tabela[nome_playlist] = []
     return
 
+def ChavesEmLista(mapa):
+    """ Recebe um mapa e retorna uma lista com as chaves. """
+    lista = []
+    for chave in mapa:
+        lista.append(chave)
+    return lista
+
 def salvarPlaylist(mapa_arquivo, mapa_tabela, playlist):
 
     arquivo = mapa_arquivo[playlist]
@@ -143,12 +150,13 @@ def consultarMusica(mapa_tabela, nome='', id=''):
         return False
     return musica
 
-def ChavesEmLista(mapa):
-    """ Recebe um mapa e retorna uma lista com as chaves. """
-    lista = []
-    for chave in mapa:
-        lista.append(chave)
-    return lista
+def filtrarMusicas(mapa_tabela, filtro, coluna_filtro):
+    """ Lista as músicas que correspondam a um 'filtro' de uma coluna dada."""
+    lista_aux = []
+    for musica in mapa_tabela['All']:
+        if musica[coluna_filtro] == filtro:
+            lista_aux.append(musica)
+    return lista_aux
 
 def excluirPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
     """ Remove o arquivo e a tabela de uma Playlist. """

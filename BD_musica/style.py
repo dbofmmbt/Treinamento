@@ -100,12 +100,12 @@ def listarElementos(lista, numeracao=0, ordem=True):
     """ Imprime os elementos de uma lista e retorna "len(lista)-1". """
     if ordem:
         for elemento in lista:
-            print('{2}{0}{3} - {1}\n'.format(numeracao,\
+            print('{2}{0}{3} - {1}'.format(numeracao,\
             elemento, estilo.bold, estilo.normal))
             numeracao += 1
     else:
         for elemento in lista:
-            print('{0}\n'.format(elemento))
+            print('{0}'.format(elemento))
             numeracao += 1
     return numeracao
 
