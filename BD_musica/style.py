@@ -95,6 +95,7 @@ def exibirMusica(musica, id=False):
     estilo.negrito('Album: '+estilo.yellow+musica[3]+'\n')
     estilo.negrito('Genero: '+estilo.yellow+musica[4]+'\n')
     return
+ 
 def listarElementos(lista, numeracao=0, ordem=True):
     """ Imprime os elementos de uma lista e retorna "len(lista)-1". """
     if ordem:

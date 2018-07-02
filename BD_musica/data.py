@@ -65,6 +65,25 @@ def salvarPlaylist(mapa_arquivo, mapa_tabela, playlist):
         arquivo.write(registro+'\n')
     return
 
+def ordenarPlaylist(mapa_tabela, playlist, coluna, reverse=False):
+    """ Ordena a Playlist dada de acordo com a Coluna escolhida. """
+    lista_auxiliar = mapa_tabela[playlist].copy()
+    lista_ordenada = []
+    while lista_auxiliar:
+        menor = lista_auxiliar[0][coluna]
+        indice = 0
+        for i in range(1+len(lista_auxiliar[1:])):
+            if lista_auxiliar[i][coluna] < menor:
+                menor = lista_auxiliar[i][coluna]
+                indice = i
+        lista_ordenada.append(lista_auxiliar[indice])
+        lista_auxiliar.pop(indice)
+    if not reverse:
+        mapa_tabela[playlist] = lista_ordenada
+    else:
+        mapa_tabela[playlist] = lista_ordenada[::-1]
+    return
+
 def adicionarMusica(mapa_tabela, musica,\
 primeira_vez = True, nome_playlist='All'):
     """ Escreve os Dados de uma lista 'Música' em uma Playlist do Mapa.

@@ -5,6 +5,9 @@ from time import sleep
 from style import *
 from data import *
 
+# Variáveis Importantes:
+categorias_musica = ('Nome', 'Banda', 'Album', 'Gênero')
+
 # Inicialização do programa:
 cabecalho()
 opcao_menu = menu()
@@ -85,11 +88,24 @@ while opcao_menu:  # Se == 0, programa se encerra.
             estilo.negrito('Selecione a Playlist Desejada:\n')
             lista_playlists = ChavesEmLista(mapa_playlist)
             listarElementos(lista_playlists)
-            
+
             playlist_escolhida = setaInput(int)
             playlist_escolhida = lista_playlists[playlist_escolhida]
+            nome_playlist = playlist_escolhida
+            
+
+            estilo.negrito('\nQual o Modo de Ordenação?\n')
+            print('0 - Pelo Nome da Música;\n')
+            print('1 - Pela Banda da Música;\n')
+            resposta_ordenacao = setaInput(int)
+            if resposta_ordenacao == 0:
+                ordenarPlaylist(mapa_playlist, nome_playlist, 1)
+            elif resposta_ordenacao == 1:
+                ordenarPlaylist(mapa_playlist, nome_playlist, 2)
             playlist_escolhida = mapa_playlist[playlist_escolhida].copy()
+
             limparTela()
+
             estilo.sublinhado('Listando Músicas de Playlist')
             estilo.negrito('Músicas da Playlist Selecionada:\n')
             for i in range(len(playlist_escolhida)):
@@ -124,7 +140,7 @@ while opcao_menu:  # Se == 0, programa se encerra.
                 print('-1 - Remove a Música do Banco de Dados.\n')
                 print('Qualquer valor não Númerico para voltar ao Menu.\n')
                 opcao_escolhida = setaInput(str)
-                if opcao_escolhida.isnumeric():
+                if opcao_escolhida.isnumeric() or opcao_escolhida=='-1':
                     opcao_escolhida = int(opcao_escolhida)
 
                 lista_playlists = ChavesEmLista(mapa_playlist)
@@ -139,7 +155,7 @@ while opcao_menu:  # Se == 0, programa se encerra.
                     adicionarMusica(mapa_playlist, musica[0], False, playlist)
                     resultado_opcao = '6 - Música Adicionada à Playlist \
 com Sucesso!\n'
-                elif opcao_escolhida == -1:
+                elif opcao_escolhida == (-1):
                     excluirMusica(mapa_playlist, musica[0], musica[1:])
                     resultado_opcao = '6 - Música Removida do BD com Sucesso!\n'
                 elif opcao_escolhida.isnumeric():
@@ -194,7 +210,13 @@ com Sucesso!\n'
             resultado_opcao = '7 - Música Adicionada com Sucesso!\n'
 
         elif opcao_menu == 8:  # Listar algumas Músicas:
-            print("\n\tOpção 8 escolhida!\n")
+            estilo.sublinhado('Filtrando Músicas')
+            estilo.negrito('Escolha uma Categoria:\n')
+            
+            listarElementos(categorias_musica, numeracao=1)
+            print()
+            categoria_escolhida = setaInput(int)
+            #if categoria_escolhida == 1:
 
     except KeyboardInterrupt:
         break  # Encerra o programa.
