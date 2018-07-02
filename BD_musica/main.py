@@ -57,7 +57,24 @@ while opcao_menu:  # Se == 0, programa se encerra.
             print("\n\tOpção 4 escolhida!\n")
 
         elif opcao_menu == 5:  # Listar Músicas de Playlist:
-            print("\n\tOpção 5 escolhida!\n")
+            estilo.sublinhado('Listando Músicas de Playlist')
+            estilo.negrito('Selecione a Playlist Desejada:\n')
+            lista_playlists = ChavesEmLista(mapa_playlist)
+            listarElementos(lista_playlists)
+            playlist_escolhida = setaInput(int)
+            playlist_escolhida = lista_playlists[playlist_escolhida]
+            playlist_escolhida = mapa_playlist[playlist_escolhida]
+            limparTela()
+            estilo.sublinhado('Listando Músicas de Playlist')
+            estilo.negrito('Músicas da Playlist Selecionada:\n')
+            for i in range(len(playlist_escolhida)):
+                playlist_escolhida[i] = '; '.join(playlist_escolhida[i])
+            print(estilo.bold+estilo.blue\
+            +'Colunas: ID; NOME; BANDA; ALBUM; GENERO\n'+estilo.normal)
+            listarElementos(playlist_escolhida, ordem=False)
+            print('\nPressione {1}Enter{0} para retornar ao Menu.\n'\
+            .format(estilo.normal, estilo.italic))
+            setaInput(str)
 
         elif opcao_menu == 6:  # Consultar Música:
             estilo.sublinhado('Consultando Música:')
@@ -77,10 +94,13 @@ while opcao_menu:  # Se == 0, programa se encerra.
                 print()
                 del i
                 estilo.negrito('Escolha uma Opção:\n')
-                print('N - Remove a Música da Playlist de número N;')
-                print('0 - Adiciona esta Música a alguma Playlist;')
-                print('-1 - Remove a Música do Banco de Dados.')
-                opcao_escolhida = setaInput(int)
+                print('N - Remove a Música da Playlist de número N;\n')
+                print('0 - Adiciona esta Música a alguma Playlist;\n')
+                print('-1 - Remove a Música do Banco de Dados.\n')
+                print('Qualquer valor não Númerico para voltar ao Menu.\n')
+                opcao_escolhida = setaInput(str)
+                if opcao_escolhida.isnumeric():
+                    opcao_escolhida = int(opcao_escolhida)
 
                 lista_playlists = ChavesEmLista(mapa_playlist)
                 if opcao_escolhida == 0:
@@ -97,11 +117,13 @@ com Sucesso!\n'
                 elif opcao_escolhida == -1:
                     excluirMusica(mapa_playlist, musica[0], musica[1:])
                     resultado_opcao = '6 - Música Removida do BD com Sucesso!\n'
-                else:
+                elif opcao_escolhida.isnumeric():
                     playlist_removida = [lista_playlists[opcao_escolhida-1]]
                     excluirMusica(mapa_playlist, musica[0], playlist_removida)
                     resultado_opcao = '6 - Música Removida de Playlist \
 com Sucesso!\n'
+                else:
+                    pass
             else:
                 resultado_opcao = '{0}{3}A música identificada por {2}"{1}"{0} \
 {3}não foi encontrada!{0}\n'.format(estilo.normal, resposta, estilo.bold, estilo.red)
