@@ -49,7 +49,7 @@ def limparTela():
     return
 
 def divisoria(quantidade, formatacao = estilo.normal):
-    print(formatacao, end = '')
+    print(formatacao, end = '', flush=True)
     for i in range(quantidade):
         print("*", end="")
     print(estilo.normal)
@@ -60,6 +60,11 @@ def opcaoErrada():
     limparTela()
     estilo.negrito("\n\tOpção Inválida!!!\n")
     return
+
+def logAtividade(texto):
+    """ Retorna texto com a formatação de Log de Opção. """
+    return '{2}{1}{0}'.format(estilo.normal, texto,\
+    estilo.bold+estilo.green)
 
 def setaInput(tipo):
     """ Solicita ao usuário algum input, que é
@@ -77,7 +82,7 @@ def cabecalho():
     divisoria(50, estilo.cyan)
     print("{2}*{1}   Olá, bem-vindo ao {3}Banco de Dados de Música!{0}{2}  *"\
         .format(estilo.normal, estilo.bold,\
-         estilo.cyan, estilo.underline))
+         estilo.cyan, estilo.underline), flush=True)
     divisoria(50, estilo.cyan)
     print()
     return
@@ -90,9 +95,8 @@ def exibirMusica(musica, id=False):
     estilo.negrito('Album: '+estilo.yellow+musica[3]+'\n')
     estilo.negrito('Genero: '+estilo.yellow+musica[4]+'\n')
     return
-def listarElementos(lista):
+def listarElementos(lista, numeracao=0):
     """ Imprime os elementos de uma lista e retorna "len(lista)-1". """
-    numeracao = 0
     for elemento in lista:
         print('{2}{0}{3} - {1}\n'.format(numeracao,\
         elemento, estilo.bold, estilo.normal))
@@ -107,9 +111,8 @@ def menu():
     {1}4{0} - Apagar arquivo da {2}Playlist{0};\n\
     {1}5{0} - Listar Músicas de uma {2}Playlist{0};\n\
     {1}6{0} - Consultar uma Música;\n\
-    {1}7{0} - Inserir nova Música em uma {2}Playlist{0};\n\
-    {1}8{0} - Apagar uma Música;\n\
-    {1}9{0} - Listagem total ou filtrada;\n\
+    {1}7{0} - Inserir nova Música no {2}Banco de Dados{0};\n\
+    {1}8{0} - Listagem total ou filtrada;\n\
     {1}0{0} - Sair do programa.\n".format\
     (estilo.normal, estilo.bold, estilo.italic, estilo.blink), end='')
 

@@ -29,6 +29,17 @@ def iniciarTabelas(mapa_arquivo):
             mapa_tabela[tabela].append(registro)
     return mapa_tabela
 
+def calcularIndice(mapa_tabela, playlist='All'):
+    """ Calcula o Índice P/ novo elemento. Função Auxiliar."""
+    maiorIndice = 0
+    for elemento in mapa_tabela['All']:
+        indice_atual = int(elemento[0])
+        if indice_atual > maiorIndice:
+            maiorIndice = indice_atual
+    return maiorIndice+1
+
+
+
 def adicionarPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
     """ Adiciona uma nova playlist nos mapas arquivo e tabela. """
     # Primeiro em arquivo:
@@ -47,15 +58,34 @@ def salvarPlaylist(mapa_arquivo, mapa_tabela, playlist):
         arquivo.write(registro+'\n')
     return
 
-def adicionarMusica(mapa_tabela, musica, nome_playlist='All'):
+def adicionarMusica(mapa_tabela, musica,\
+primeira_vez = True, nome_playlist='All'):
     """ Escreve os Dados de uma lista 'Música' em uma Playlist do Mapa.
     padrão de 'Música': id, nome, banda, album, genero. """
-    id = len(mapa_tabela['All'])
-    musica[0] = str(id)
-    if nome_playlist != 'All':
+    musica[0] = str(musica[0])
+    if primeira_vez and nome_playlist != 'All':
         mapa_tabela['All'].append(musica)
     mapa_tabela[nome_playlist].append(musica)
     return
+
+def excluirMusica(mapa_tabela, musica, lista_playlists):
+    """ Exclui a Música das playlists listadas. """
+    nome = musica[1]
+    
+    try:
+        for playlist in lista_playlists:
+            indice = -1
+            i = 0
+            while(indice == -1):
+                if nome in mapa_tabela[playlist][i]:
+                    indice = i
+                else:
+                    i += 1
+            del mapa_tabela[playlist][indice]
+            
+    except:
+        return False
+    return True
 
 def consultarMusica(mapa_tabela, nome='', id=''):
     """ Retorna uma lista em que '0' é a música e o restante são
@@ -70,22 +100,29 @@ def consultarMusica(mapa_tabela, nome='', id=''):
                 else:
                     i += 1
         else:
-            while(not indice):
+            while(indice == -1):
                 if id in mapa_tabela['All'][i]:
                     indice = i
                 else:
                     i += 1
-
         musica = [] # '0' é a música, resto é playlist.
         musica.append(mapa_tabela['All'][indice])
+        indice = str(indice+1)
 
         for playlist in mapa_tabela:
-            if indice in playlist:
-                musica.append(playlist)
+            for registro in mapa_tabela[playlist]:
+                if indice in registro:
+                    musica.append(playlist)
     except:
         return False
     return musica
 
+def ChavesEmLista(mapa):
+    """ Recebe um mapa e retorna uma lista com as chaves. """
+    lista = []
+    for chave in mapa:
+        lista.append(chave)
+    return lista
 
 def excluirPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
     """ Remove o arquivo e a tabela de uma Playlist. """
