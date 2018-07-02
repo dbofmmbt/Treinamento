@@ -52,9 +52,21 @@ while opcao_menu:  # Se == 0, programa se encerra.
 
         elif opcao_menu == 3:  # Ler Playlist:
             estilo.sublinhado('Lendo Playlists')
-            # TODO fazer algo interativo ou algo direto aqui?
-            # Essa parte seria apenas chamar IniciarArquivos novamente
-            # e adicionar apenas arquivos que não estavam antes na Memória.
+
+            mapa_auxiliar = iniciarArquivos()
+            lista_auxiliar = ChavesEmLista(mapa_auxiliar)
+            lista_playlists = ChavesEmLista(mapa_playlist)
+            lista_exibir = []
+            for playlist in lista_auxiliar:
+                if playlist not in lista_playlists:
+                    mapa_playlist[playlist] = mapa_auxiliar[playlist]
+                lista_exibir.append(playlist)
+
+            estilo.negrito('As seguintes Playlists foram encontradas:\n')
+            listarElementos(lista_exibir, ordem=False)
+            print('\nPressione Enter para continuar.\n')
+            setaInput(str)
+            resultado_opcao = '3 - Playlists Lidas com Sucesso!\n'
 
         elif opcao_menu == 4:  # Apagar Playlist:
             print("\n\tOpção 4 escolhida!\n")

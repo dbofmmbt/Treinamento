@@ -139,10 +139,3 @@ def excluirPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
 def salvarTabelas(mapa_tabela, mapa_arquivo):
     """ Registra os dados do Mapa nos arquivos respectivos. """
     pass
-
-# Código de teste:
-mapa = iniciarArquivos()
-print(mapa)
-mapa['oi'].write("olá")
-mapa['oi'].seek(0, 0)
-print(mapa['oi'].read())
