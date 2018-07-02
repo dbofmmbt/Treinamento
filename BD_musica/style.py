@@ -113,7 +113,7 @@ def menu():
     print("{1}Por favor, escolha uma opção:{0}\n\n\
     {1}1{0} - Criar uma {2}Playlist{0};\n\
     {1}2{0} - Salvar {2}Playlist{0} no Arquivo;\n\
-    {1}3{0} - Ler {2}Playlist{0} do arquivo;\n\
+    {1}3{0} - Ler {2}Playlists{0} de {2}'Dados/'{0};\n\
     {1}4{0} - Apagar arquivo da {2}Playlist{0};\n\
     {1}5{0} - Listar Músicas de uma {2}Playlist{0};\n\
     {1}6{0} - Consultar uma Música;\n\

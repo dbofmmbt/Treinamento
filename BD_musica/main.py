@@ -51,7 +51,10 @@ while opcao_menu:  # Se == 0, programa se encerra.
             resultado_opcao = '2 - Playlist Armazenada com Sucesso!\n'
 
         elif opcao_menu == 3:  # Ler Playlist:
-            print("\n\tOpção 3 escolhida!\n")
+            estilo.sublinhado('Lendo Playlists')
+            # TODO fazer algo interativo ou algo direto aqui?
+            # Essa parte seria apenas chamar IniciarArquivos novamente
+            # e adicionar apenas arquivos que não estavam antes na Memória.
 
         elif opcao_menu == 4:  # Apagar Playlist:
             print("\n\tOpção 4 escolhida!\n")
@@ -63,7 +66,7 @@ while opcao_menu:  # Se == 0, programa se encerra.
             listarElementos(lista_playlists)
             playlist_escolhida = setaInput(int)
             playlist_escolhida = lista_playlists[playlist_escolhida]
-            playlist_escolhida = mapa_playlist[playlist_escolhida]
+            playlist_escolhida = mapa_playlist[playlist_escolhida].copy()
             limparTela()
             estilo.sublinhado('Listando Músicas de Playlist')
             estilo.negrito('Músicas da Playlist Selecionada:\n')

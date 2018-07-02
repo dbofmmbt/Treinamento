@@ -1,10 +1,16 @@
 """ Arquivo auxiliar para manipulação de arquivos e listas. """
 
 import os
+
 def iniciarArquivos():
     """ Obtém os arquivos e armazena-os num mapa. """
-    tabelas = open("Dados/tabelas.csv", 'r+')
+    aux = os.listdir('Dados/')
     lista = []
+    tabelas = []
+    for elemento in aux:
+        elemento = elemento[::-1].partition('.')[2]
+        elemento = elemento[::-1]
+        tabelas.append(elemento)
     mapa_arquivo = {}
     for linha in tabelas:
         lista.append(linha.strip())
