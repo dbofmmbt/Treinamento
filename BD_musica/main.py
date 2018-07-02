@@ -69,13 +69,23 @@ while opcao_menu:  # Se == 0, programa se encerra.
             resultado_opcao = '3 - Playlists Lidas com Sucesso!\n'
 
         elif opcao_menu == 4:  # Apagar Playlist:
-            print("\n\tOpção 4 escolhida!\n")
+            estilo.sublinhado('Apagando Playlist')
+            estilo.negrito('Escolha a Playlist que deseja Apagar:\n')
+            lista_playlists = ChavesEmLista(mapa_playlist)
+            listarElementos(lista_playlists)
+            playlist_escolhida = setaInput(int)
+            playlist_escolhida = lista_playlists[playlist_escolhida]
+            os.remove('Dados/{}.csv'.format(playlist_escolhida))
+            del mapa_playlist[playlist_escolhida]
+
+            resultado_opcao = '4 - Playlist Removida com Sucesso!\n'
 
         elif opcao_menu == 5:  # Listar Músicas de Playlist:
             estilo.sublinhado('Listando Músicas de Playlist')
             estilo.negrito('Selecione a Playlist Desejada:\n')
             lista_playlists = ChavesEmLista(mapa_playlist)
             listarElementos(lista_playlists)
+            
             playlist_escolhida = setaInput(int)
             playlist_escolhida = lista_playlists[playlist_escolhida]
             playlist_escolhida = mapa_playlist[playlist_escolhida].copy()
@@ -199,6 +209,13 @@ com Sucesso!\n'
 # Fim do programa:
 frase_final = "\n{1}Encerrando o programa... ;){0}"\
 .format(estilo.normal, estilo.bold+estilo.red)
+
+for arquivo in mapa_arquivo:
+    mapa_arquivo[arquivo].close()
+
+aux = iniciarArquivos('w')
+for playlist in mapa_playlist:
+    salvarPlaylist(aux, mapa_playlist, playlist)
 
 for letra in frase_final:
     print(letra, flush=True, end='')

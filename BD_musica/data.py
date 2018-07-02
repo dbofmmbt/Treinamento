@@ -2,7 +2,7 @@
 
 import os
 
-def iniciarArquivos():
+def iniciarArquivos(modo_abertura='r+'):
     """ Obtém os arquivos e armazena-os num mapa. """
     aux = os.listdir('Dados/')
     lista = []
@@ -19,7 +19,7 @@ def iniciarArquivos():
     for arquivo in lista:
         caminho = 'Dados/'+arquivo+'.csv'
         if os.path.exists(caminho):
-            mapa_arquivo[arquivo] = open(caminho, 'r+')
+            mapa_arquivo[arquivo] = open(caminho, modo_abertura)
         else:
             mapa_arquivo[arquivo] = open(caminho, 'w')
 
@@ -31,6 +31,7 @@ def iniciarTabelas(mapa_arquivo):
     for tabela in mapa_arquivo:
         mapa_tabela[tabela] = []
         for registro in mapa_arquivo[tabela]:
+            registro = registro.strip()
             registro = registro.split('\t')
             mapa_tabela[tabela].append(registro)
     return mapa_tabela
@@ -135,7 +136,3 @@ def excluirPlaylist(mapa_arquivo, mapa_tabela, nome_playlist):
     mapa_arquivo.pop(nome_playlist)
     mapa_tabela.pop(nome_playlist)
     return
-
-def salvarTabelas(mapa_tabela, mapa_arquivo):
-    """ Registra os dados do Mapa nos arquivos respectivos. """
-    pass
