@@ -235,7 +235,7 @@ com Sucesso!\n'
             for i in range(len(lista_filtradas)):
                 lista_filtradas[i] = '; '.join(lista_filtradas[i])
             listarElementos(lista_filtradas, ordem=False)
-            estilo.negrito('Pressione Enter para Continuar:')
+            estilo.negrito('\nPressione Enter para Continuar:')
             setaInput(str)
 
     except KeyboardInterrupt:
