@@ -10,9 +10,10 @@ SUMÁRIO:
 
 1 - Navbar
 2 - Section Chamada
+3 - Section explicacao-cafe
+4 - Section tipos-cafe
 
 */
-
 
 /* 1 - Navbar */
 nav {
@@ -30,6 +31,20 @@ nav ul li {
     display: inline-block;
     margin: 10px 10px;
 }
+
+nav ul li:after {
+    content: "";
+    background: #fafafa;
+    width: 0;
+    height: 5px;
+    display:    block;
+    transition: 0.3s;
+}
+
+nav ul li:hover:after {
+    width: 100%;
+}
+
 nav ul {
     float: right;
 }
@@ -67,6 +82,155 @@ nav ul {
 }
 
 #chamada h5{
-    font-size: 1em;
+    font-size: 1.125em;
     font-style: italic;
+}
+
+/* Section explicacao-cafe */
+
+#explicacao-cafe {
+    padding: 0 170px;
+}
+
+#explicacao-cafe h2 {
+    font-size: 2.25em;
+    margin: 40px 40px 20px 40px;
+    text-align: center;
+}
+
+#explicacao-cafe .valor h3 {
+    width: 220px;
+    font-size: 2.25em;
+    color: #fafafa;
+    background: #2d2d2d;
+    padding: 5px 0 10px 0;
+    text-align: center;
+    text-transform: lowercase;
+    font-style: italic;
+    position: relative;
+    top: -25px;
+}
+
+#explicacao-cafe .valor {
+    float: left;
+    margin: 0 5px;
+    max-width: 100%;
+}
+
+#explicacao-cafe #texto-explicacao {
+    margin: 15px auto 50px auto;
+    max-width: 460px;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.125em;
+}
+
+@media (max-width: 960px) {
+
+    #explicacao-cafe .container {
+        max-width: 600px;
+    }
+
+    #explicacao-cafe .valor img {
+        width: 280px;
+    }
+
+    #explicacao-cafe .valor h3 {
+        font-size: 1.125em;
+    }
+
+    @media (max-width: 600px) {
+
+        #explicacao-cafe .container {
+            max-width: 300px;
+        }
+
+        #explicacao-cafe .valor {
+            margin: 20px 0;
+        }
+        
+        #explicacao-cafe .valor img {
+            width: 300px;
+        }
+
+        #explicacao-cafe .valor h3 {
+            font-size: 2.25em;
+            margin: 0 auto;
+        }
+    }
+}
+
+
+/* 4 - Section tipos-cafe */
+#itens-tipo {
+    margin: 0 auto;
+}
+
+#tipos-cafe {
+    background-color: #eedfa2;
+    padding: 20px 130px;
+    border: 2px solid #c2b687;
+}
+
+.clear:after, .clear:before {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#tipos-cafe .tipo-item {
+    width: 300px;
+    font-size: 0.875em;
+    float: left;
+    margin: 0 30px 20px 0;
+}
+
+#tipos-cafe .tipo-item h2 {
+    text-align: center;
+    font-size: 2.25em;
+    margin: 0 0 10px 0;
+}
+
+/* Círculos */
+#tipos-cafe .tipo-item h2::before {
+    content: "";
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-color: red;
+    border-radius: 50%;
+    margin: 20px auto;
+    border: #fafafa solid 5px;
+    box-shadow: 0 0 0 5px red;
+}
+
+#tipos-cafe .tipo-item #paulista::before {
+    background: #492901;
+    box-shadow: 0 0 0 5px #492901;
+}
+
+#tipos-cafe .tipo-item #carioca::before {
+    background: #c17139;
+    box-shadow: 0 0 0 5px #c17139;
+}
+
+#tipos-cafe .tipo-item #mineiro::before {
+    background: #d7a54d;
+    box-shadow: 0 0 0 5px #d7a54d;
+}
+#link-tipos {
+    display: table;
+    font-size: 2.25em;
+    text-decoration: none;
+    color: #2d2d2d;
+    border: 2px solid #2d2d2d;
+    text-align: center;
+    padding: 10px 10px;
+    margin: 0 auto;
+    transition: 0.3s;
+}
+
+#link-tipos:hover {
+    background-color: #2d2d2d;
+    color: #fafafa;
 }
