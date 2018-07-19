@@ -1,0 +1,72 @@
+/* Reset. */
+body, h1, h2, h3, p, ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+/*
+
+SUMÁRIO:
+
+1 - Navbar
+2 - Section Chamada
+
+*/
+
+
+/* 1 - Navbar */
+nav {
+    background: #000;
+    padding: 20px 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.125em;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 10px 10px;
+}
+nav ul {
+    float: right;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* 2 - Section Chamada */
+#chamada {
+    padding: 130px 0;
+    background: url("../img/bg-intro.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+#chamada h1, #chamada h5 {
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    text-align: center;
+}
+
+#chamada h1 {
+    font-size: 3em;
+    text-transform: uppercase;
+}
+
+#chamada h1::after {
+    content: "";
+    background: white;
+    width: 20px;
+    height: 4px;
+    display: block;
+    margin: 10px auto 0 auto;
+}
+
+#chamada h5{
+    font-size: 1em;
+    font-style: italic;
+}
