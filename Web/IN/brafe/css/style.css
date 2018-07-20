@@ -8,12 +8,40 @@ body, h1, h2, h3, p, ul {
 
 SUMÁRIO:
 
+0 - Gerais
 1 - Navbar
 2 - Section Chamada
-3 - Section explicacao-cafe
-4 - Section tipos-cafe
+3 - Section valores-cafe
+4 - Section sabores-cafe
 
 */
+
+/* 0 - Gerais */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+@media (max-width:960px) {
+    .container {
+        max-width: 600px;
+    }
+
+    @media (max-width:600px) {
+        .container {
+            max-width: 300px;
+        }
+    }
+}
+
+.clear:after, .clear:before {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
 
 /* 1 - Navbar */
 nav {
@@ -49,10 +77,7 @@ nav ul {
     float: right;
 }
 
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-}
+
 
 /* 2 - Section Chamada */
 #chamada {
@@ -86,20 +111,17 @@ nav ul {
     font-style: italic;
 }
 
-/* Section explicacao-cafe */
 
-#explicacao-cafe {
-    padding: 0 170px;
-}
 
-#explicacao-cafe h2 {
+/* Section valores-cafe */
+#valores-cafe h2 {
     font-size: 2.25em;
     margin: 40px 40px 20px 40px;
     text-align: center;
 }
 
-#explicacao-cafe .valor h3 {
-    width: 220px;
+#valores-cafe .valor h3 {
+    max-width: 220px;
     font-size: 2.25em;
     color: #fafafa;
     background: #2d2d2d;
@@ -111,13 +133,14 @@ nav ul {
     top: -25px;
 }
 
-#explicacao-cafe .valor {
+#valores-cafe .valor {
     float: left;
-    margin: 0 5px;
+    margin: 0 10px;
     max-width: 100%;
 }
 
-#explicacao-cafe #texto-explicacao {
+#texto-valores {
+    padding: 0 5px;
     margin: 15px auto 50px auto;
     max-width: 460px;
     text-align: center;
@@ -127,97 +150,92 @@ nav ul {
 
 @media (max-width: 960px) {
 
-    #explicacao-cafe .container {
+    #valores-cafe .container {
         max-width: 600px;
     }
 
-    #explicacao-cafe .valor img {
-        width: 280px;
+    #valores-cafe .valor img {
+        max-width: 280px;
     }
 
-    #explicacao-cafe .valor h3 {
+    #valores-cafe .valor h3 {
         font-size: 1.125em;
     }
 
     @media (max-width: 600px) {
 
-        #explicacao-cafe .container {
+        #valores-cafe .container {
             max-width: 300px;
         }
 
-        #explicacao-cafe .valor {
-            margin: 20px 0;
+        #valores-cafe .valor {
+        margin: 10px auto;
         }
         
-        #explicacao-cafe .valor img {
-            width: 300px;
+        #valores-cafe .valor img {
+            max-width: 300px;
+            margin: 0 auto;
         }
 
-        #explicacao-cafe .valor h3 {
-            font-size: 2.25em;
+        #valores-cafe .valor h3 {
+            font-size: 1.125em;
             margin: 0 auto;
         }
     }
 }
 
 
-/* 4 - Section tipos-cafe */
-#itens-tipo {
-    margin: 0 auto;
-}
 
-#tipos-cafe {
+/* 4 - Section sabores-cafe */
+#sabores-cafe {
     background-color: #eedfa2;
-    padding: 20px 130px;
-    border: 2px solid #c2b687;
+    border:5px solid #c2b687;
 }
 
-.clear:after, .clear:before {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-#tipos-cafe .tipo-item {
-    width: 300px;
+#sabores-cafe .sabor {
+    max-width: 300px;
     font-size: 0.875em;
     float: left;
-    margin: 0 30px 20px 0;
+    margin: 25px 10px;
 }
 
-#tipos-cafe .tipo-item h2 {
+#sabores-cafe .sabor h2 {
     text-align: center;
     font-size: 2.25em;
     margin: 0 0 10px 0;
 }
 
+#sabores-cafe p {
+    text-align: center;
+}
+
 /* Círculos */
-#tipos-cafe .tipo-item h2::before {
+#sabores-cafe .sabor h2::before {
     content: "";
     width: 100px;
     height: 100px;
     display: block;
-    background-color: red;
     border-radius: 50%;
     margin: 20px auto;
     border: #fafafa solid 5px;
-    box-shadow: 0 0 0 5px red;
 }
 
-#tipos-cafe .tipo-item #paulista::before {
+/* Tipos de Café */
+#paulista::before {
     background: #492901;
     box-shadow: 0 0 0 5px #492901;
 }
 
-#tipos-cafe .tipo-item #carioca::before {
+#carioca::before {
     background: #c17139;
     box-shadow: 0 0 0 5px #c17139;
 }
 
-#tipos-cafe .tipo-item #mineiro::before {
+#mineiro::before {
     background: #d7a54d;
     box-shadow: 0 0 0 5px #d7a54d;
 }
+
 #link-tipos {
     display: table;
     font-size: 2.25em;
@@ -229,7 +247,6 @@ nav ul {
     margin: 0 auto;
     transition: 0.3s;
 }
-
 #link-tipos:hover {
     background-color: #2d2d2d;
     color: #fafafa;
