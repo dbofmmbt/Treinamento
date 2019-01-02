@@ -3,9 +3,16 @@
 # Script para a automatização da instalação do Docker e do VSCode.
 
 sudo apt install git -y
+echo "Digite seu email"
+read email
+echo "Digite seu nome"
+read name
+git config --global user.name "${name}"
+git config --global user.email $email
 
 # Settar os alias
-if [ -e bash_aliases ] then
+if [ -e bash_aliases ]
+then
   cp bash_aliases ~/.bash_aliases
 fi 
 
@@ -13,9 +20,9 @@ fi
 curl https://www.wfonts.com/download/data/2016/05/18/roboto-mono/roboto-mono.zip --output roboto-mono.zip
 mkdir ~/.fonts
 mv roboto-mono.zip ~/.fonts
-unzip ~/.fonts/roboto-mono.zip
+unzip ~/.fonts/roboto-mono.zip -d ~/.fonts
 rm ~/.fonts/roboto-mono.zip
-fc-cache -f -v
+fc-cache -f
 
 # Docker.
 printf "\n\n\e[33;1mInstalação do Docker:\e[m\n\n"
@@ -71,11 +78,7 @@ printf "\n\n\e[33;1mSegundo passo: Instalação de Extensões.\e[m\n\n"
     code --install-extension eg2.tslint
     
     # Configurações do Usuário.
-    printf '{
-        "window.menuBarVisibility": "toggle",
-        "workbench.colorTheme": "Horizon",
-        "editor.fontFamily": "'Roboto Mono', 'Ubuntu Mono', 'monospace'"
-}' > ~/.config/Code/User/settings.json
+    printf ('{"window.menuBarVisibility": "toggle", "workbench.colorTheme": "Horizon", "editor.fontFamily": "\'Roboto Mono\', \'Ubuntu Mono\', \'monospace\'"}' > ~/.config/Code/User/settings.json
 
 printf "\n\n\e[33;1mVS Code Pronto!\e[m\n\n"
 
