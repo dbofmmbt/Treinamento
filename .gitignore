@@ -1,3 +1,5 @@
 *.csv
 *.pyc
 *.out
+*.class
+.vscode

@@ -1,0 +1,25 @@
+# General Aliases
+alias cdex='code . && exit'
+alias cdal='cd ~ && code .bash_aliases && exit'
+alias c='clear'
+
+# Rails Alias
+alias rs='rails s'
+alias rt='rails db:test:prepare && rails test'
+alias rc='rails c'
+alias rdbr='rails db:migrate:reset && rails db:seed && rails s'
+alias rdb='rails db:migrate && rails s'
+
+# Git alias
+alias gdiff='git diff'
+alias gstat='git status'
+alias gbra='git branch'
+alias gbrar='git branch -r'
+alias gpush='git push'
+alias gpull='git pull'
+alias glog='git log'
+alias gfet='git fetch'
+alias gchk='git checkout'
+alias gchkb='git checkout -b'
+alias gcom='git add -A && git commit -m'
+alias gstsh='git add -A && git stash'
