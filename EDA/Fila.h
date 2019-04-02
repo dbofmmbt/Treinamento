@@ -1,3 +1,5 @@
+#include "LibsUteis.h"
+
 typedef struct noFila NoFila;
 typedef struct fila Fila;
 

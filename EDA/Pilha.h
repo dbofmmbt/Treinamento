@@ -1,3 +1,5 @@
+#include "LibsUteis.h"
+
 typedef struct noPilha NoPilha;
 typedef struct pilha Pilha;
 
